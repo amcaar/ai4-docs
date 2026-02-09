@@ -12,6 +12,7 @@ You should access one of those Dashboards depending on the project you are a mem
 * `AI4EOSC Dashboard <https://dashboard.cloud.ai4eosc.eu>`__ *(use this one if you are unsure which one to use)*
 * `iMagine Dashboard <https://dashboard.cloud.imagine-ai.eu>`__
 * `AI4Life Dashboard <https://ai4life.cloud.ai4eosc.eu>`__
+* `KMD4EOSC Dashboard <https://kmd4eosc.cloud.ai4eosc.eu/>`__
 * `Tutorials Dashboard <https://tutorials.cloud.ai4eosc.eu>`__
 
 The Dashboard has a two views:

@@ -11,12 +11,12 @@ in production. Following the FAIR principles for science, both our software (pla
 and models) are fully open-source and easily portable to any other platform (no vendor
 lock-in!).
 
-Current supported platforms:
+The platform is currently used by the following projects:
 
    * `AI4EOSC <https://ai4eosc.eu/>`__: AI for the European Open Science Cloud
    * `iMagine <https://imagine-ai.eu/>`__: Imaging data and services for aquatic science
    * `AI4Life <https://ai4life.eurobioimaging.eu/>`__: AI models and methods for the life sciences
-
+   * `KMD4EOSC <https://kmd4eosc.pl/>`: Universal infrastructure for efficient data processing in HPC
 
 
 .. grid:: 2

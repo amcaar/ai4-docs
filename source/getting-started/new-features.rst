@@ -10,6 +10,7 @@ notified here.
 .. Template
 .. * 📘 new :doc:`... <...>` page (``2024-04-03``)
 
+* 📌 we started supporting the `KMD4EOSC project <https://kmd4eosc.pl/>`__ (``2025-02-09``)
 * 📌 we release a new :doc:`Helpdesk and Community to improve interaction with users </help/index>` (``2025-08-01``)
 * 📈 we released our :ref:`provenance tracking workflow <reference/modules:Provenance>` (``2025-07-10``)
 * 📈 we migrated to our :doc:`new authentication system </getting-started/register>` (``2025-07-01``)
