@@ -135,7 +135,7 @@ The API endpoint to query the models is:
 To generate the API keys go to the :ref:`Dashboard profile <dashboard_profile>`, to the ``Secrets and API keys`` section.
 There you will be able to create a new API key selecting the name and the expiration date.
 
-.. image:: /_static/images/llm/api-keys-dashboard.png
+.. image:: /_static/images/dashboard/profile-llm-keys.png
 
 .. dropdown:: ㅤ ℹ️ Budgets and rate limits
 
@@ -209,7 +209,7 @@ To configure it:
         - name: AI4OS LLM
           provider: openai
           model: AI4EOSC/Small
-          apiKey: "************************************"
+          apiKey: "sk-************************************"
           apiBase: https://vllm.cloud.ai4eosc.eu/
           roles:
             - chat
@@ -238,7 +238,7 @@ Then you can use the LLM as following:
 
     client = OpenAI(
         base_url="https://vllm.cloud.ai4eosc.eu",
-        api_key="************************************",
+        api_key="sk-************************************",
     )
 
     completion = client.chat.completions.create(
@@ -285,12 +285,12 @@ define your demo pipeline:
 
   Settings.embed_model = OpenAILikeEmbedding(
       api_base="https://vllm.cloud.ai4eosc.eu",
-      api_key="************************************",
+      api_key="sk-************************************",
       model_name="AI4EOSC/Qwen3-Embedding",
   )
   Settings.llm = OpenAILike(
       api_base="https://vllm.cloud.ai4eosc.eu",
-      api_key="************************************",
+      api_key="sk-************************************",
       model="AI4EOSC/Small",
       context_window=25000,
       is_chat_model=True,
