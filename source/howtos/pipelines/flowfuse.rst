@@ -1,5 +1,5 @@
-Composing AI Inference pipelines with Node-RED & Flowfuse
-=========================================================
+Composing AI Inference pipelines with Node-RED
+===============================================
 
 .. dropdown:: :fab:`youtube;youtube-icon` ㅤCreate a pipeline with Flowfuse
 
@@ -11,12 +11,6 @@ Composing AI Inference pipelines with Node-RED & Flowfuse
 
    :material-outlined:`error;1.5em` Please, be aware that video demos can become quickly outdated. In case of doubt, always refer to the written documentation.
 
-.. admonition:: Deprecation notice
-    :class: info
-
-    *  **OSCAR v3.6.5** now provides support for deploying a Node-RED instance. More info regarding this new OSCAR feature can be found `here <https://docs.oscar.grycap.net/latest/integration-node-red/>`__ .
-    * The Flowfuse instance of the project is **no longer available**. You can test the examples directly in OSCAR, deploying your own Node-RED instance with OSCAR nodes already integrated.
-    * The current version of the videotutorial will be updated soon. Stay tuned!
 
 
 In this document, we will learn about Composing AI Inference pipelines based on OSCAR
@@ -51,7 +45,7 @@ Let's start by creating an OSCAR service to use it from Node-RED.
 1.1. Deploy YOLOv8 service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Go to ``OSCAR Dashboard`` <https://dashboard.oscar.grycap.net/>`__ and,
+Go to `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__ and,
 in the ``Services`` panel, select ``Create service -> FDL``. Use the
 following configuration:
 
@@ -85,7 +79,7 @@ for more information about creating OSCAR service.
 
 2. Creating our Node-RED instance in OSCAR
 ------------------------------------------
-1. In the ```OSCAR dashboard`` <https://inference.cloud.ai4eosc.eu/ui/>`__,
+1. In the `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__,
    go to the ``Flows`` panel and then click ``New``.
 
    .. image:: /_static/images/flows/node-red-deployed.png
@@ -141,7 +135,7 @@ node* double-click on it:
 
 - **URL**: URL of an image you want to analyze with YOLO (for example,
   you can use this
-  ```image`` <https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg>`__)
+  `image <https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg>`__)
 - **Payload**: *Send as request body*
 - **Return**: *A binary buffer*
 
@@ -151,11 +145,11 @@ node* double-click on it:
 Configure the ``OSCAR YOLO8`` node:
 
 - **Server**: URL of the OSCAR cluster. You can get it from
-  ```OSCAR dashboard`` <https://dashboard.oscar.grycap.net/>`__ → *Info*
+  `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__ → *Info*
   (Sidebar panel) → *Endpoint*
 - **Service** Name: *yolov8-node-red*
 - **Token**: Obtain the token from
-  ```OSCAR dashboard`` <https://dashboard.oscar.grycap.net/>`__ → *Info*
+  `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__ → *Info*
   (Sidebar panel) → *Access token*
 
 .. figure:: /_static/images/flows/node-red-node-oscar-yolo.png
