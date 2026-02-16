@@ -1,16 +1,17 @@
 Composing AI Inference pipelines with Node-RED
 ===============================================
 
-.. dropdown:: :fab:`youtube;youtube-icon` ㅤCreate a pipeline with Flowfuse
+.. (ignacio): Comment Flowfuse video tutorial until we record the new one with Node-Red.
 
-   .. raw:: html
+.. .. dropdown:: :fab:`youtube;youtube-icon` ㅤCreate a pipeline with Flowfuse
 
-      <div style="position: relative; padding-bottom: 56.25%; margin-bottom: 2em; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/9a019SA5GW4" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-      </div>
+..    .. raw:: html
 
-   :material-outlined:`error;1.5em` Please, be aware that video demos can become quickly outdated. In case of doubt, always refer to the written documentation.
+..       <div style="position: relative; padding-bottom: 56.25%; margin-bottom: 2em; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+..         <iframe src="https://www.youtube.com/embed/9a019SA5GW4" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+..       </div>
 
+..    :material-outlined:`error;1.5em` Please, be aware that video demos can become quickly outdated. In case of doubt, always refer to the written documentation.
 
 
 In this document, we will learn about Composing AI Inference pipelines based on OSCAR
@@ -24,7 +25,7 @@ services with Node-RED, specifically:
 
 For a complete overview of the Node-RED examples, please refer to the `AI4Compose GitHub README <https://github.com/ai4os/ai4-compose/blob/main/node-red/README.md>`__.
 
-First of all, let's understand the key technologies involved in this tutorial: 
+First of all, let's understand the key technologies involved in this tutorial:
 
 * `Node-RED <https://nodered.org/>`__ is an open-source visual programming tool.
   Built on Node.js, it allows users to create event-driven systems by connecting nodes
@@ -46,7 +47,7 @@ Let's start by creating an OSCAR service to use it from Node-RED.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Go to `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__ and,
-in the ``Services`` panel, select ``Create service -> FDL``. Use the
+in the ``Services`` panel, select ``Create service`` → ``FDL``. Use the
 following configuration:
 
 FDL:
@@ -100,7 +101,7 @@ for more information about creating OSCAR services.
 3. Accessing the Node-RED instance
 ----------------------------------
 Once the Node-RED instance is up and running, you can log in with your credentials
-(the user is always **admin**).
+(the user is always ``admin``).
 
 .. image:: /_static/images/flows/node-red-login.png
    :alt: node-red-login.png
@@ -131,27 +132,27 @@ shown:
 .. figure:: /_static/images/flows/node-red-workflow.png
    :alt: node-red-workflow.png
 
-Now we need to configure the components. To configure the *HTTP request
-node* double-click on it:
+Now we need to configure the components. To configure the ``HTTP request
+node`` double-click on it:
 
-- **URL**: URL of an image you want to analyze with YOLO (for example,
+- ``URL``: URL of an image you want to analyze with YOLO (for example,
   you can use this
   `image <https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg>`__)
-- **Payload**: *Send as request body*
-- **Return**: *A binary buffer*
+- ``Payload``: ``Send as request body``
+- ``Return``: *A binary buffer*
 
 .. figure:: /_static/images/flows/node-red-node-http-request.png
    :alt: node-red-http-request.png
 
 Configure the ``OSCAR YOLO8`` node:
 
-- **Server**: URL of the OSCAR cluster. You can get it from
-  `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__ → *Info*
-  (Sidebar panel) → *Endpoint*
-- **Service** Name: *yolov8-node-red*
-- **Token**: Obtain the token from
-  `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__ → *Info*
-  (Sidebar panel) → *Access token*
+- ``Server``: URL of the OSCAR cluster. You can get it from
+  `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__ → ``Info``
+  (Sidebar panel) → ``Endpoint``
+- ``Service Name``: ``yolov8-node-red``
+- ``Token``: Obtain the token from
+  `OSCAR Dashboard <https://inference.cloud.ai4eosc.eu/ui/>`__ → ``Info``
+  (Sidebar panel) → ``Access token``
 
 .. figure:: /_static/images/flows/node-red-node-oscar-yolo.png
    :alt: node-red-node-oscar-yolo.png
@@ -159,8 +160,7 @@ Configure the ``OSCAR YOLO8`` node:
 4.2. Testing the workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 After configuring your workflow, you can test it in the Node-RED Editor:
-
-Click *Deploy* (top right corner) and then click on the *inject* node:
+click ``Deploy`` (top right corner) and then click on the ``inject`` node:
 
 .. figure:: /_static/images/flows/node-red-workflow-run.png
    :alt: node-red-workflow-run.png
@@ -184,5 +184,4 @@ To delete an instance, you have to click on the ``Delete`` button and confirm th
       :alt: node-red-delete.png
 
 The MinIO bucket remains available; however, it is a good practice to ensure that you have backed up any important data or configurations before
-deleting an instance. 
-
+deleting an instance.
