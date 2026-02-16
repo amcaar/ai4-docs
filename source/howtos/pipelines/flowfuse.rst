@@ -179,15 +179,10 @@ To delete an instance, you have to click on the ``Delete`` button and confirm th
    .. image:: /_static/images/flows/node-red-dashboard-delete.png
       :alt: node-red-dashboard-delete.png
 
+
    .. image:: /_static/images/flows/node-red-delete.png
       :alt: node-red-delete.png
 
 The MinIO bucket remains available; however, it is a good practice to ensure that you have backed up any important data or configurations before
 deleting an instance. 
 
-
-
-After installation, it's good practice to test the new modules or nodes to ensure they
-work as expected.
-
-.. image:: /_static/images/flows/35.png
