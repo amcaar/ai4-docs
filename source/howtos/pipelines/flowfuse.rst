@@ -16,216 +16,184 @@ Composing AI Inference pipelines with Node-RED & Flowfuse
 
     *  **OSCAR v3.6.5** now provides support for deploying a Node-RED instance. More info regarding this new OSCAR feature can be found `here <https://docs.oscar.grycap.net/latest/integration-node-red/>`__ .
     * The Flowfuse instance of the project is **no longer available**. You can test the examples directly in OSCAR, deploying your own Node-RED instance with OSCAR nodes already integrated.
-    * The current version of the tutorial will be updated soon. Stay tuned!
+    * The current version of the videotutorial will be updated soon. Stay tuned!
 
 
 In this document, we will learn about Composing AI Inference pipelines based on OSCAR
-services with Node-RED & FlowFuse, specifically:
+services with Node-RED, specifically:
 
-* how to register on the FlowFuse platform for AI4EOSC,
-* how to join a team,
-* how to create our first application and Node-RED instance,
-* how to deploy a workflow to utilize inference services using OSCAR.
+* how to create inference services in OSCAR,
+* how to create a new "Flows" instance (based on Node-RED) in the OSCAR platform for AI4EOSC,
+* how to access the instance and create our first application workflow,
+* how to deploy a workflow to call inference services deployed in OSCAR,
+* how to delete the Node-RED instance.
 
-For a complete overview of the Node-RED and FlowFuse examples, please refer to the `GitHub README <https://github.com/ai4os/ai4-compose/blob/main/node-red/README.md>`__.
+For a complete overview of the Node-RED examples, please refer to the `GitHub README <https://github.com/ai4os/ai4-compose/blob/main/node-red/README.md>`__.
 
-First of all, let's understand what FlowFuse, Node-RED and OSCAR are:
+First of all, let's understand the key technologies involved in this tutorial: 
 
 * `Node-RED <https://nodered.org/>`__ is an open-source visual programming tool.
   Built on Node.js, it allows users to create event-driven systems by connecting nodes
   representing different functionalities. With a user-friendly web interface and a rich
   library of pre-built nodes, Node-RED simplifies the visual composition of pipelines.
-* `FlowFuse <https://flowfuse.com/>`__ adds to Node-RED: collaborative development,
-  management of remote deployments, support for DevOps delivery pipelines, and the
-  ability to host Node-RED applications on FlowFuse. FlowFuse is the DevOps platform
-  for Node-RED application development and delivery.
 * `OSCAR <https://oscar.grycap.net/>`__ is an open-source serverless platform to support
-  scalable event-driven computations.
-  See the our documentation on :doc:`how to make an inference in OSCAR </howtos/deploy/oscar>`
-  for more information.
+  scalable event-driven computations. From **OSCAR v3.6.5**, it provides support for deploying
+  a Node-RED instance. More info regarding this new OSCAR feature can be found `here <https://docs.oscar.grycap.net/latest/integration-node-red/>`__ .
 
 In AI4OS, we use Node-Red to visually compose AI model inference pipelines.
-A managed instance of FlowFuse is also available for users to self-provision
-their Node-Red instances on which they can compose these pipelines.
 Specific custom nodes have been created to perform AI model inference on remote
 OSCAR clusters.
 
-Let's understand the most relevant concepts in FlowFuse:
+1. Creating inference services in OSCAR
+---------------------------------------
+Let's start by creating an OSCAR service to use it from Node-RED.
 
-* **Teams:** Users are grouped into Teams, which are central to FlowFuse's
-  organizational structure.
-  Each team can encompass multiple members, and users can be part of multiple teams.
-* **Applications:** Teams create Applications, which are collections of one or
-  more Node-RED instances.
-  There is an application already created in the FlowFuse instance named ``AI4EOSC-Dev``.
-* **Instances:** Creating an instance out of the ``OSCAR Node-Red template`` will
-  ensure the  dependencies required to interact with OSCAR clusters and the custom
-  defined nodes for certain AI models from the AI4OS dashboard.
-  Each instance is derived from a Template, providing default settings, and runs on a
-  Stack that defines the Node-RED version, memory, and CPU usage.
-* **Devices:** The FlowFuse platform can be used to manage Node-RED instances running
-  on remote Devices.
-  A Device runs a software agent that connects back to FlowFuse in order to receive updates.
-
-These concepts collectively enable efficient management and deployment of Node-RED
-instances and applications within the FlowFuse ecosystem. For more information,
-check the `FlowFuse official documentation <https://flowfuse.com/docs/user/concepts>`__.
-
-
-1. How to sign up in FlowFuse for AI4EOSC
------------------------------------------
-
-First and foremost, we need to access the `FlowFuse instance for AI4EOSC <https://forge.flows.dev.ai4eosc.eu>`__.
-Once inside, we have to register and accept the `terms and conditions <https://ai4eosc.eu/platform/acceptable-use-policy/>`__.
-
-.. image:: /_static/images/flows/1.png
-
-Once registered, we will receive a confirmation email to our email address.
-
-.. image:: /_static/images/flows/2.png
-
-The email will contain a link that will help us confirm our email address.
-
-.. image:: /_static/images/flows/3.png
-
-Once we use the link, our email will be confirmed, and we will be able to access the
-platform using our credentials.
-
-.. image:: /_static/images/flows/4.png
-
-To change your password you just have to access the user settings, click on the
-security option.
-
-.. image:: /_static/images/flows/18.png
-
-
-2. Joining the Development Team
--------------------------------
-
-After the email verification, we have to wait for the administrator to add us to
-the AI4EOSC development team.
-
-For the time being, the AI4EOSC's FlowFuse system administrator does not receive a
-notification when a new user registers.
-Therefore, you should request access by sending an e-mail to:
-
-.. code::
-
-    To: Diego Aguirre - dieagra@i3m.upv.es
-    CC: Amanda Calatrava - amcaar@i3m.upv.es
-
-.. image:: /_static/images/flows/5.png
-
-Once the administrator accepts us into the AI4EOSC team, we will receive an email.
-From that point on, we will be able to access the team's applications,
-where we can access the existing Node-Red instances and also create our own instances.
-
-.. image:: /_static/images/flows/6.png
-
-Clicking on the invitation will allow us to see more details about the team invitation,
-and we can join by clicking ``Accept,`` which will be revealed by clicking on the three
-dots on the left of the information
-
-.. image:: /_static/images/flows/7.png
-
-After completing the registration and joining the AI4EOSC Dev team, we should be able
-to see the team. If we have the owner role, we can create applications and deploy our
-instances. However, if we are a member with the viewer role or a guest who can only
-view the dashboards, we will need to inform the team administrator to change our role.
-For more details about the roles, you can refer to the following image:
-
-.. image:: /_static/images/flows/8.png
-   :width: 600px
-
-
-3. Creating our first application
----------------------------------
-
-3.1 Configuring the application
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Once our owner role is confirmed, we can create applications within the team.
-To do so, we will click on the ``Create application`` option.
-
-.. image:: /_static/images/flows/9.png
-
-In the ``Create a New Application and Instance`` menu, we will need to provide a name
-for our application, a description to identify its purpose, and then deploy the
-first instance of the application.
-The instance is given a randomly generated name, but it can be changed.
-Please note that instance names cannot be changed once set, so make sure it is correct.
-
-Lastly, ensure to select the OSCAR Node-RED template, which comes pre configured and
-installed with modules for following the examples in the document and deploying
-future projects using OSCAR.
-
-Once we have finished with the configuration, we can click on the ``Create application``
-button.
-
-.. image:: /_static/images/flows/10.png
-
-3.2 Creating new instances
+1.1. Deploy YOLOv8 service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As we've seen, an Node-RED instance is created when we create an application,
-but it's also possible to deploy additional instances within a created application.
-In this case, we will click on the ``Add Instance`` button.
+Go to ``OSCAR Dashboard`` <https://dashboard.oscar.grycap.net/>`__ and,
+in the ``Services`` panel, select ``Create service -> FDL``. Use the
+following configuration:
 
-.. image:: /_static/images/flows/11.png
+FDL:
 
-Once in the menu, you can select the instance name and the template.
-Remember that the instance name cannot be changed, so ensure it is correct.
-When everything is configured, click on the ``Create Instance`` button to create
-and deploy it.
+.. code:: yaml
 
-.. image:: /_static/images/flows/12.png
+   functions:
+     oscar:
+     - oscar-cluster:
+         name: yolov8-node-red
+         memory: 4Gi
+         cpu: '2.0'
+         image: ai4oshub/ai4os-yolov8-torch:latest
+         script: script.sh
+         log_level: CRITICAL
 
-Now that the instance is created, you can monitor the creation process by selecting
-it from the application menu.
-As shown in the figure, it will be in the ``Starting`` status, indicating that it is
-installing modules and other components of the template.
-This process may take 1 to 2 minutes to complete.
+Script:
 
-.. image:: /_static/images/flows/13.png
+.. code:: bash
 
-3.3 Connecting an instance
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+   #!/bin/bash
+   RENAMED_FILE="${INPUT_FILE_PATH}.png"
+   mv "$INPUT_FILE_PATH" "$RENAMED_FILE"
+   OUTPUT_FILE="$TMP_OUTPUT_DIR/output.png"
+   deepaas-cli --deepaas_method_output="$OUTPUT_FILE" predict --files "$RENAMED_FILE" --accept image/png 2>&1
+   echo "Prediction was saved in: $OUTPUT_FILE"
 
-Once the instance is created, the next step is to join it.
-You can do this by selecting the desired instance from the application menu and
-then clicking on ``Open Editor``.
-Alternatively, you can click on the instance and then select ``Open Editor`` from the
-instance menu.
+See the our documentation on :doc:`how to make an inference in OSCAR </howtos/deploy/oscar>`
+for more information about creating OSCAR service.
 
-.. image:: /_static/images/flows/14.png
+2. Creating our Node-RED instance in OSCAR
+------------------------------------------
+1. In the ```OSCAR dashboard`` <https://inference.cloud.ai4eosc.eu/ui/>`__,
+   go to the ``Flows`` panel and then click ``New``.
 
-.. image:: /_static/images/flows/15.png
+   .. image:: /_static/images/flows/node-red-deployed.png
+      :alt: node-red-deployed.png
 
-From this point on, the operation is the usual process as using Node-RED.
+2. Enter the **admin** password that you will be asked to access later
+   on this instance of Node-RED, and select or create a Bucket.
 
-.. image:: /_static/images/flows/16.png
+   .. image:: /_static/images/flows/node-red-dashboard.png
+      :alt: node-red-dashboard.png
 
-You will see at the bottom of the Node palette on the left, some custom nodes created to simplify performing the AI model inference on a remote OSCAR cluster. Note that the number of nodes will be updated progressively and according to the models developed in the project.
+3. After deploying Node-RED, we access its user interface.
 
-.. image:: /_static/images/flows/17.png
-
-3.4 How to delete a Node-Red instance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To delete an instance, you have to be the owner of the team, applications,
-and instances. Expand the actions menu and click on ``Delete``.
-
-Always ensure that you have backed up any important data or configurations before
-deleting an instance. Once deleted, the data associated with that instance may be
-irretrievable.
-
-.. image:: /_static/images/flows/36.png
+   .. image:: /_static/images/flows/node-red-dashboard-visit.png
+      :alt: node-red-dashboard-visit.png
 
 
-4. Application examples
------------------------
+3. Accessing the Node-RED instance
+----------------------------------
+Once the Node-RED instance is up and running, you can log in with your credentials
+(the user is always **admin**).
 
-4.1 Toy workflow: OSCAR Cowsay
+.. image:: /_static/images/flows/node-red-login.png
+   :alt: node-red-login.png
+
+
+4. Creating a workflow in Node-Red
+----------------------------------
+
+4.1. Designing and creating the workflow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Let’s create a workflow that fetches an image from the Internet, makes a
+request to the YOLO service and visualizes the result.
+
+We need the following list of components from the Node-RED sidebar menu:
+
+- **Common** → ``inject`` node
+- **Network** → ``HTTP request`` node
+- **Output** → ``image`` node
+- **OSCAR** → ``OSCAR YOLO8`` node
+
+.. figure:: /_static/images/flows/node-red-nodes.png
+   :alt: node-red-nodes.png
+
+Drag and drop the boxes to the canvas and then connect the components as
+shown:
+
+.. figure:: /_static/images/flows/node-red-workflow.png
+   :alt: node-red-workflow.png
+
+Now we need to configure the components. To configure the *HTTP request
+node* double-click on it:
+
+- **URL**: URL of an image you want to analyze with YOLO (for example,
+  you can use this
+  ```image`` <https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg>`__)
+- **Payload**: *Send as request body*
+- **Return**: *A binary buffer*
+
+.. figure:: /_static/images/flows/node-red-node-http-request.png
+   :alt: node-red-http-request.png
+
+Configure the ``OSCAR YOLO8`` node:
+
+- **Server**: URL of the OSCAR cluster. You can get it from
+  ```OSCAR dashboard`` <https://dashboard.oscar.grycap.net/>`__ → *Info*
+  (Sidebar panel) → *Endpoint*
+- **Service** Name: *yolov8-node-red*
+- **Token**: Obtain the token from
+  ```OSCAR dashboard`` <https://dashboard.oscar.grycap.net/>`__ → *Info*
+  (Sidebar panel) → *Access token*
+
+.. figure:: /_static/images/flows/node-red-node-oscar-yolo.png
+   :alt: node-red-node-oscar-yolo.png
+
+4.2. Testing the workflow
+^^^^^^^^^^^^^^^^^^^^^^^^^
+After configuring your workflow, you can test it in the Node-RED Editor:
+
+Click *Deploy* (top right corner) and then click on the *inject* node:
+
+.. figure:: /_static/images/flows/node-red-workflow-run.png
+   :alt: node-red-workflow-run.png
+
+You should see the result as indicated below.
+
+.. figure:: /_static/images/flows/node-red-workflow-result.png
+   :alt: node-red-workflow-result.png
+
+
+5. How to delete a Node-Red instance
+------------------------------------
+
+To delete an instance, you have to click on the ``Delete`` button and confirm the operation.
+
+   .. image:: /_static/images/flows/node-red-dashboard-delete.png
+      :alt: node-red-dashboard-delete.png
+
+   .. image:: /_static/images/flows/node-red-delete.png
+      :alt: node-red-delete.png
+
+The MinIO bucket remains available; however, it is a good practice to ensure that you have backed up any important data or configurations before
+deleting an instance. 
+
+6. Other application examples
+-----------------------------
+
+6.1 Toy workflow: OSCAR Cowsay
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We have now seen how to create an application, deploy a Node-RED instance,
@@ -283,7 +251,7 @@ We have finished implementing the first workflow using an OSCAR node.
 
 .. image:: /_static/images/flows/25.png
 
-4.2 Plant Classification workflow with input preprocessing
+6.2 Plant Classification workflow with input preprocessing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this section, we will compose an example workflow for AI inference where
@@ -335,10 +303,7 @@ the option to view the result in raw, allowing you to read the information corre
    :width: 600px
 
 
-5. Importing to our instance
-----------------------------------
-
-5.1 Importing flows from Github
+6.3 Importing flows from Github
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now we will explain how to, step by step, recreate usage examples for OSCAR by
@@ -364,8 +329,8 @@ Once this option is selected, a floating menu will appear where we can paste the
 
 .. image:: /_static/images/flows/34.png
 
-5.2 Importing modules via node red palette
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+6.4 Importing modules via the Node-RED palette
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the case of importing other types of modules or nodes, we can expand the same menu,
 but now we will go to the ``Manage palette`` option, which allows us to import from
